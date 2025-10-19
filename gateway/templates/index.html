@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Gateway - App2</title>
+<style>
+body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg,#ff9a9e,#fad0c4); min-height:100vh; margin:0; padding:0; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+.header { text-align:center; color:#fff; margin-bottom:30px; }
+.header h1 { font-size:2.5em; }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.service-card { background:white; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:center; transition: transform 0.3s ease; }
+.service-card:hover { transform: translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+.service-icon { font-size:2.5em; margin-bottom:15px; }
+.btn { padding:10px 20px; border-radius:20px; background:linear-gradient(135deg,#f6d365,#fda085); color:white; text-decoration:none; font-weight:bold; display:inline-block; transition: transform 0.2s ease; }
+.btn:hover { transform: scale(1.05); }
+.footer { text-align:center; padding:15px; color:#fff; margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🚀 Microservices Gateway App2</h1>
+<p>Gestion centralisée de vos services</p>
+</div>
+<div class="services-grid">
+<div class="service-card"><div class="service-icon">👤</div><h2>Users</h2><a href="/users/" class="btn">Accéder</a></div>
+<div class="service-card"><div class="service-icon">🏠</div><h2>Maisons</h2><a href="/maisons/" class="btn">Accéder</a></div>
+<div class="service-card"><div class="service-icon">📍</div><h2>Locations</h2><a href="/locations/" class="btn">Accéder</a></div>
+</div>
+<div class="footer">© 2025 Microservices Gateway App2</div>
+</div>
+</body>
+</html>

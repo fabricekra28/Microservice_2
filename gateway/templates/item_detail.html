@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Détails {{ service[:-1] }} #{{ item.id }}</title>
+<style>
+body { font-family:'Arial', sans-serif; background:#e0f7fa; margin:0; padding:20px; }
+.container { max-width:700px; margin:40px auto; background:white; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+.header { text-align:center; margin-bottom:20px; }
+.header h1 { color:#006064; margin-bottom:5px; }
+.card { background:#f1f8e9; padding:20px; border-radius:15px; }
+.detail-item { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #ddd; }
+.detail-item:last-child { border-bottom:none; }
+.detail-label { font-weight:bold; color:#004d40; }
+.actions { display:flex; justify-content:center; gap:10px; margin-top:20px; flex-wrap:wrap; }
+.btn { padding:10px 20px; border:none; border-radius:20px; font-weight:bold; color:white; cursor:pointer; text-decoration:none; }
+.btn-primary { background: linear-gradient(135deg,#26c6da,#00acc1); }
+.btn-secondary { background:#6c757d; }
+.btn-danger { background: linear-gradient(135deg,#ff758c,#ff7eb3); }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>👁️ Détails du {{ service[:-1] }} #{{ item.id }}</h1>
+</div>
+<div class="card">
+{% for key,value in item.items() %}
+<div class="detail-item">
+<span class="detail-label">{{ key|replace('_',' ')|title }}:</span>
+<span>{{ value }}</span>
+</div>
+{% endfor %}
+</div>
+<div class="actions">
+<a href="/{{ service }}/" class="btn btn-secondary">Retour à la liste</a>
+<a href="/{{ service }}/edit/{{ item.id }}" class="btn btn-primary">✏️ Modifier</a>
+<a href="/{{ service }}/delete/{{ item.id }}" class="btn btn-danger" onclick="return confirm('Supprimer ?')">🗑️ Supprimer</a>
+<a href="/" class="btn btn-secondary">🏠 Accueil</a>
+</div>
+</div>
+</body>
+</html>
