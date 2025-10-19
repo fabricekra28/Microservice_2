@@ -1,0 +1,73 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_micro_app2
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432"  # différent de App1 pour éviter conflit local
+    volumes:
+      - postgres_data_app2:/var/lib/postgresql/data
+    networks:
+      - microservices-app2
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "8007:8007"
+    environment:
+      USERS_SERVICE_URL: ${USERS_SERVICE_URL}
+      MAISON_SERVICE_URL: ${MAISON_SERVICE_URL}
+      LOCATION_SERVICE_URL: ${LOCATION_SERVICE_URL}
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+      - user
+      - maison
+      - location
+    networks:
+      - microservices-app2
+
+  user:
+    build: ./user
+    ports:
+      - "8008:8008"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+    networks:
+      - microservices-app2
+
+  maison:
+    build: ./maison
+    ports:
+      - "8005:8005"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+    networks:
+      - microservices-app2
+
+  location:
+    build: ./location
+    ports:
+      - "8006:8006"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+    networks:
+      - microservices-app2
+
+volumes:
+  postgres_data_app2:
+
+networks:
+  microservices-app2:
+    driver: bridge
